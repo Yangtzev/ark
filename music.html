@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音乐 - 无职转生百科</title>
+    <link rel="stylesheet" href="wzzs.css">
+    <style>
+        .content-box {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 1000px;
+        }
+        .image-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .image-container img {
+            width: 45%;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        .image-container img:hover {
+            transform: scale(1.1);
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body onload="checkLogin()">
+    <header>
+        <a href="index.html">
+            <img src="https://mushokutensei.jp/wp-content/themes/mushoku_re/img/common/img_logo02.png" alt="无职转生" style="height: 50px;">
+        </a>
+        <div class="login-container">
+            <span id="login-link"><a href="login.html">请登录</a></span>
+        </div>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="light_novel.html">轻小说</a></li>
+            <li><a href="anime.html">动漫</a></li>
+            <li><a href="music.html">音乐</a></li>
+            <li><a href="people.html">人物</a></li>
+            <li><a href="photo.html">插图</a></li>
+        </ul>
+    </nav>
+    <main>
+        <div class="content-box">
+            <h2 style="text-align: center;">点击专辑即可试听</h2>
+            <div class="image-container">
+                <img src="https://mushokutensei.jp/wp-content/themes/mushoku_re/img/music/img_collection01.jpg" alt="第一季" onclick="openModal('first')">
+                <img src="https://mushokutensei.jp/wp-content/themes/mushoku_re/img/music/img_soundtrack04.jpg" alt="第二季" onclick="openModal('second')">
+            </div>
+        </div>
+    </main>
+
+    <!-- 模态窗口 -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <ul id="songList">
+            </ul>
+            <audio id="audioPlayer" controls>
+                <source id="audioSource" src="" type="audio/mpeg">
+                您的浏览器不支持音频播放。
+            </audio>
+        </div>
+    </div>
+
+    <script src="wzzs.js" defer></script>
+    <script>
+        function openModal(album) {
+            var songList = document.getElementById('songList');
+            songList.innerHTML = ''; // 清空当前歌曲列表
+
+            if (album === 'first') {
+                songList.innerHTML += '<li><a href="#" onclick="playSong(\'music/旅人の唄.mp3\')">旅人の唄</a></li>';
+                songList.innerHTML += '<li><a href="#" onclick="playSong(\'music/目覚めの唄.mp3\')">目覚めの唄</a></li>';
+                songList.innerHTML += '<li><a href="#" onclick="playSong(\'music/継承の唄.mp3\')">継承の唄</a></li>';
+                songList.innerHTML += '<li><a href="#" onclick="playSong(\'music/祈りの唄.mp3\')">祈りの唄</a></li>';
+                songList.innerHTML += '<li><a href="#" onclick="playSong(\'music/遠くの子守の唄.mp3\')">遠くの子守の唄</a></li>';
+                songList.innerHTML += '<li><a href="#" onclick="playSong(\'music/旅人の唄～帰郷～.mp3\')">旅人の唄~帰郷~</a></li>';
+                songList.innerHTML += '<li><a href="#" onclick="playSong(\'music/オンリー.mp3\')">オンリー</a></li>';
+                songList.innerHTML += '<li><a href="#" onclick="playSong(\'music/風と行く道.mp3\')">風と行く道</a></li>';
+            } else if (album === 'second') {
+                songList.innerHTML += '<li><a href="#" onclick="playSong(\'music/spiral.m4a\')">spiral</a></li>';
+                songList.innerHTML += '<li><a href="#" onclick="playSong(\'music/オン・ザ・フロントライン.mp3\')">オン・ザ・フロントライン</a></li>';
+                songList.innerHTML += '<li><a href="#" onclick="playSong(\'music/ムスビメ.mp3\')">ムスビメ</a></li>';
+                songList.innerHTML += '<li><a href="#" onclick="playSong(\'music/守りたいもの.mp3\')">守りたいもの</a></li>';
+                songList.innerHTML += '<li><a href="#" onclick="playSong(\'music/Clover.m4a\')">Clover</a></li>';
+                songList.innerHTML += '<li><a href="#" onclick="playSong(\'music/花咲み.ogg\')">花咲み</a></li>';
+                songList.innerHTML += '<li><a href="#" onclick="playSong(\'music/ツバサ.m4a\')">ツバサ</a></li>';
+                songList.innerHTML += '<li><a href="#" onclick="playSong(\'music/かげくらべの唄.ogg\')">かげくらべの唄</a></li>';
+            }
+
+            var modal = document.getElementById('myModal');
+            modal.style.display = 'block';
+            setTimeout(function() {
+                modal.style.opacity = '1';
+            }, 10); // 延迟以触发过渡效果
+        }
+
+        function closeModal() {
+            var modal = document.getElementById('myModal');
+            modal.style.opacity = '0';
+            setTimeout(function() {
+                modal.style.display = 'none';
+            }, 500); // 与过渡时间匹配
+        }
+
+        function playSong(url) {
+            var audioPlayer = document.getElementById('audioPlayer');
+            var audioSource = document.getElementById('audioSource');
+            audioSource.src = url;
+            audioPlayer.load();
+            audioPlayer.play();
+        }
+
+        window.onclick = function(event) {
+            var modal = document.getElementById('myModal');
+            if (event.target == modal) {
+                modal.style.opacity = '0';
+                setTimeout(function() {
+                    modal.style.display = 'none';
+                }, 500); // 与过渡时间匹配
+            }
+        }
+    </script>
+</body>
+</html>

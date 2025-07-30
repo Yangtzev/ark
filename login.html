@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录 - 无职转生百科</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('https://mushokutensei.jp/wp-content/themes/mushoku_re/img/index/img_endcard04.png') no-repeat center center fixed;
+            background-size: cover;
+            backdrop-filter: blur(10px);
+        }
+        .login-form {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .login-form h2 {
+            margin-top: 0;
+        }
+        .login-form input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        .login-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: black;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .login-form button:hover {
+            background-color: #575757;
+        }
+        .error-message {
+            color: red;
+        }
+    </style>
+    <script>
+        function login(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            if (username === 'Roxy' && password === 'love') {
+                localStorage.setItem('username', username);
+                window.location.href = 'index.html';
+            } else {
+                document.getElementById('error-message').textContent = '用户名或密码错误';
+            }
+        }
+    </script>
+</head>
+<body>
+    <form class="login-form" action="" onsubmit="login(event)">
+        <h2>登录</h2>
+        <div id="error-message" class="error-message"></div>
+        <input type="text" id="username" placeholder="用户名" required>
+        <input type="password" id="password" placeholder="密码" required>
+        <button type="submit">登录</button>
+    </form>
+</body>
+</html>
