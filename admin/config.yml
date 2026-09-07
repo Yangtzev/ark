@@ -6,6 +6,11 @@ backend:
   base_url: "https://ark-cms-oauth.accelerator-365.workers.dev/"
   auth_endpoint: /auth
 
+# Decap CMS 当前版本要求声明媒体存储位置。干员头像仍可直接填写外部 URL；
+# 此目录仅用于将来在后台上传本地图片时保存文件。
+media_folder: "img/uploads"
+public_folder: "/img/uploads"
+
 collections:
   - name: operators
     label: 干员资料
