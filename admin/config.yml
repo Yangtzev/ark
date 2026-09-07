@@ -1,0 +1,44 @@
+# 部署前请将 repo 与 base_url 改成你自己的真实值；具体步骤见 ADMIN_SETUP.md。
+backend:
+  name: github
+  repo: "REPLACE_WITH_GITHUB_OWNER/REPLACE_WITH_REPOSITORY"
+  branch: main
+  base_url: "https://REPLACE_WITH_YOUR_WORKER.workers.dev"
+  auth_endpoint: /auth
+
+collections:
+  - name: operators
+    label: 干员资料
+    files:
+      - name: all_operators
+        label: 全部干员
+        file: data/operators.json
+        format: json
+        fields:
+          - name: operators
+            label: 干员列表
+            widget: list
+            summary: "{{fields.name}}（{{fields.profession}}）"
+            fields:
+              - { label: 干员名称, name: name, widget: string }
+              - label: 职业
+                name: profession
+                widget: select
+                options:
+                  - { label: 先锋, value: pioneer }
+                  - { label: 近卫, value: guard }
+                  - { label: 重装, value: defender }
+                  - { label: 狙击, value: sniper }
+                  - { label: 术师, value: caster }
+                  - { label: 医疗, value: medic }
+                  - { label: 辅助, value: supporter }
+                  - { label: 特种, value: specialist }
+              - { label: 头像 URL, name: image, widget: string, hint: "粘贴完整 https 图片链接" }
+              - label: 优先级
+                name: priority
+                widget: select
+                options: [高, 中, 低, 完全不值得练]
+                required: false
+              - { label: 专精建议, name: mastery, widget: string, required: false }
+              - { label: 模组建议, name: module, widget: string, required: false }
+              - { label: PRTS 页面 URL, name: prts, widget: string, required: false, hint: "留空时会根据干员名称自动跳转 PRTS" }
