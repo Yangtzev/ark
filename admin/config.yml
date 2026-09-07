@@ -1,7 +1,7 @@
 # 部署前请将 repo 与 base_url 改成你自己的真实值；具体步骤见 ADMIN_SETUP.md。
 backend:
   name: github
-  repo: "yangtzev/ark"
+  repo: "Yangtzev/ark"
   branch: main
   base_url: "https://ark-cms-oauth.accelerator-365.workers.dev/"
   auth_endpoint: /auth
