@@ -1187,6 +1187,15 @@
       "mastery": "二技能 三技能",
       "module": "x模三级",
       "prts": "https://prts.wiki/w/焰狐龙梓兰"
+    },
+    {
+      "name": "谬因",
+      "profession": "caster",
+      "image": "https://media.prts.wiki/9/92/%E5%A4%B4%E5%83%8F_%E8%B0%AC%E5%9B%A0.png",
+      "priority": "低",
+      "mastery": "三技能",
+      "module": "y模3级",
+      "prts": "https://prts.wiki/w/%E8%B0%AC%E5%9B%A0"
     }
   ]
 }
